@@ -4,7 +4,7 @@ import { WebSocketServer } from 'ws';
 
 // auto-detect the Arduino port
 const list = await SerialPort.list();
-const found = list.find(p => /usbmodem|usbserial|wchusbserial|SLAB/i.test(p.path));
+const found = list.find(p => p.manufacture?.includes("Arduino"));
 if (!found) {
   console.error('No Arduino found. Plugged in? IDE Serial Monitor closed?');
   process.exit(1);
